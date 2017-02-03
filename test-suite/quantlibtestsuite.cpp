@@ -43,15 +43,6 @@
 #  undef BOOST_LIB_NAME
 #endif
 
-#ifdef QL_ENABLE_THREAD_SAFE_OBSERVER_PATTERN
-#  define BOOST_LIB_NAME boost_system
-#  include <boost/config/auto_link.hpp>
-#  undef BOOST_LIB_NAME
-#  define BOOST_LIB_NAME boost_thread
-#  include <boost/config/auto_link.hpp>
-#  undef BOOST_LIB_NAME
-#endif
-
 /* uncomment the following lines to unmask floating-point exceptions.
    See http://www.wilmott.com/messageview.cfm?catid=10&threadid=9481
 */
@@ -132,10 +123,11 @@
 #include "integrals.hpp"
 #include "interestrates.hpp"
 #include "interpolations.hpp"
+#include "jumpdiffusion.hpp"
+#include "lazyobject.hpp"
 #include "libormarketmodel.hpp"
 #include "libormarketmodelprocess.hpp"
 #include "linearleastsquaresregression.hpp"
-#include "jumpdiffusion.hpp"
 #include "lookbackoptions.hpp"
 #include "lowdiscrepancysequences.hpp"
 #include "margrabeoption.hpp"
@@ -151,6 +143,7 @@
 #include "mersennetwister.hpp"
 #include "money.hpp"
 #include "noarbsabr.hpp"
+#include "normalclvmodel.hpp"
 #include "nthtodefault.hpp"
 #include "numericaldifferentiation.hpp"
 #include "observable.hpp"
@@ -176,6 +169,7 @@
 #include "shortratemodels.hpp"
 #include "solvers.hpp"
 #include "spreadoption.hpp"
+#include "squarerootclvmodel.hpp"
 #include "swingoption.hpp"
 #include "stats.hpp"
 #include "swap.hpp"
@@ -311,9 +305,10 @@ test_suite* init_unit_test_suite(int, char* []) {
            << (settings.includeReferenceDateEvents()
                ? "reference date events are included,\n"
                : "reference date events are excluded,\n")
-           << (settings.includeTodaysCashFlows()
-               ? "today's cashflows are included,\n"
-               : "today's cashflows are excluded,\n")
+           << (settings.includeTodaysCashFlows() == boost::none ?
+               "" : (*settings.includeTodaysCashFlows() ?
+                     "today's cashflows are included,\n"
+                     : "today's cashflows are excluded,\n"))
            << (settings.enforcesTodaysHistoricFixings()
                ? "today's historic fixings are enforced"
                : "today's historic fixings are not enforced");
@@ -380,6 +375,7 @@ test_suite* init_unit_test_suite(int, char* []) {
     test->add(InterestRateTest::suite());
     test->add(InterpolationTest::suite());
     test->add(JumpDiffusionTest::suite());
+    test->add(LazyObjectTest::suite());
     test->add(LinearLeastSquaresRegressionTest::suite());
     test->add(LookbackOptionTest::suite());
     test->add(LowDiscrepancyTest::suite());
@@ -447,6 +443,7 @@ test_suite* init_unit_test_suite(int, char* []) {
     test->add(EverestOptionTest::suite());
     test->add(ExtendedTreesTest::suite());
     test->add(ExtensibleOptionsTest::suite());
+    test->add(GaussianQuadraturesTest::experimental());
     test->add(HestonModelTest::experimental());
     test->add(HestonSLVModelTest::experimental());
     test->add(HimalayaOptionTest::suite());
@@ -454,6 +451,7 @@ test_suite* init_unit_test_suite(int, char* []) {
     test->add(InflationVolTest::suite());
     test->add(MargrabeOptionTest::suite());
     test->add(NoArbSabrTest::suite());
+    test->add(NormalCLVModelTest::experimental());
     test->add(NthToDefaultTest::suite());
     test->add(NumericalDifferentiationTest::suite());
     test->add(PagodaOptionTest::suite());
@@ -461,6 +459,7 @@ test_suite* init_unit_test_suite(int, char* []) {
     test->add(QuantoOptionTest::experimental());
     test->add(RiskNeutralDensityCalculatorTest::experimental());
     test->add(SpreadOptionTest::suite());
+    test->add(SquareRootCLVModelTest::experimental());
     test->add(SwingOptionTest::suite());
     test->add(TwoAssetBarrierOptionTest::suite());
     test->add(TwoAssetCorrelationOptionTest::suite());

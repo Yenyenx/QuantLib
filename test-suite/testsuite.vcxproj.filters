@@ -209,6 +209,9 @@
     <ClCompile Include="jumpdiffusion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="lazyobject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="libormarketmodel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -335,6 +338,9 @@
     <ClCompile Include="spreadoption.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="squarerootclvmodel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="stats.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -421,6 +427,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="observable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="normalclvmodel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -623,6 +632,9 @@
     <ClInclude Include="jumpdiffusion.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="lazyobject.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="libormarketmodel.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -752,6 +764,9 @@
     <ClInclude Include="spreadoption.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="squarerootclvmodel.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="stats.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -840,6 +855,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="observable.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="normalclvmodel.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
